@@ -1,0 +1,41 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.packages{
+    &__grid{
+        @include m.container;
+        @include m.grid(1,3rem);
+        @include m.tablet {
+            @include m.grid(3, 3rem);
+            align-items: flex-start;
+        }
+    }
+
+    &__submit{
+        margin-top: 3rem;
+        @include m.button(v.$blue, v.$white);
+    }
+}
+
+.package{
+    @include m.card;
+    &:nth-child(2){
+        order: -1;
+        @include m.tablet {
+            order: unset;
+        }
+    }    
+
+    &__list{
+        @include m.reset_list;
+        line-height: 2;
+    }
+
+    &__price{
+        font-size: 6rem;
+        margin: 3rem 0;
+        color: v.$blue;
+        font-weight: v.$bold;
+        text-align: center;
+    }
+}

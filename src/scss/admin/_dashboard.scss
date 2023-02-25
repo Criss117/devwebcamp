@@ -1,0 +1,120 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.dashboard{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: v.$light_gray;
+
+    &__header{
+        background-color: v.$dark_gray;
+        padding: 2rem;
+    }
+
+    &__header-grid{
+        display: flex;
+        flex-direction: column;
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center
+        }
+    }   
+
+    &__logo{
+        @include m.logo;
+        @include m.flowing-text(2rem, 3rem); 
+    }
+
+    &__submit--logout{
+        @include m.link;
+    }
+
+    &__grid{
+        display: flex;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    &__sidebar{
+        background-color: lighten(v.$dark_gray, 15%);
+        width: 15rem;
+    } 
+
+    &__menu{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__link{
+        color: lighten(v.$dark_gray, 60%);
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        transition: 300ms background-color ease-in-out, 300ms color ease-in-out, 300ms border-radius ease-in-out, 300ms font-size ease-in-out;
+
+        &:hover, 
+        &--actual{
+            background-color: lighten(v.$dark_gray, 20%);
+            color: v.$white;      
+            border-radius: 1rem;
+        }
+        
+    }
+
+    &__menu-text{
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: v.$bold;
+        margin-top: .5rem;
+    }
+
+    &__contents{
+        background-color: darken(v.$light_gray, 10%);
+        padding: 1rem 1rem 3rem 1rem;
+        width: 100%;
+        overflow-y: scroll;
+        @include m.tablet {
+            padding: 1rem 5rem 3rem 5rem;
+        }
+    }
+
+    &__container-button{
+        @include m.tablet {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 5rem
+        }
+    }
+
+    &__button{
+        @include m.button(v.$blue, v.$white);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        @include m.tablet{
+            width: auto;
+        }
+    }
+
+    &__container{
+        @include m.box_shadow;
+        background-color: v.$white;
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+
+    &__form{
+        margin: 2rem;
+        @extend .dashboard__container;
+        @include m.container-md;
+    }
+
+    &__chart{
+        @include m.container-md;
+    }
+}

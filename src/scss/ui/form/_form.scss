@@ -1,0 +1,91 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.form{
+    display: flex;
+    flex-direction: column;
+    
+    &__fieldset{
+        border: none;
+        margin-top: 3rem;
+        padding: 0;
+    }
+
+    &__legend{
+        color: v.$gray;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    &__block{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0;
+    }
+
+    &__container-icon{
+        display: flex;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+
+    &__icon{
+        background-color: v.$dark_gray;
+        width: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i{
+            color: v.$white;
+            font-size: 2rem;
+        }
+    }
+
+    &__label{
+        display: block;
+        font-size: 2rem;
+        color: rgba(v.$black, .8);
+    }
+    
+    &__input,
+    &__select{
+        padding: 1rem;
+        border: 1px solid darken(v.$light_gray, 20);
+        border-radius: .5rem;
+        &--file{
+            border: none;
+        }
+        &--social{
+            @extend .form__input;
+            flex: 1;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    &__radio{
+        margin: 1rem 0 2rem 0;
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__text{
+        margin-top: 3rem;
+    }
+
+    &__image{
+        max-width: 20rem; 
+    }
+
+    &__list{
+        @include m.tags;    
+        
+    }
+
+    &__submit{
+        @include m.button(v.$blue, v.$white);
+        // width: min(80%, 40rem);
+        // align-self: center;
+    }
+
+}

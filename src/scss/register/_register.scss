@@ -1,0 +1,100 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.events-register{
+    @include m.container;
+    @include m.tablet {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+   
+    &__list{
+        @include m.tablet {
+            flex: 0 0 60%;
+        }
+    }
+
+    &__grid{
+        @include m.grid(1, 3rem);
+        @include m.tablet {
+            @include m.grid(2, 3rem);
+        }
+    }
+
+    &__heading{
+        &--conferences,
+        &--workshops{
+            white-space: nowrap;
+            @include m.flowing-text(1rem, 6rem);
+        }
+
+        &--conferences{
+            color: v.$blue;
+            
+        }
+        &--workshops{
+            color: v.$secondary;
+            margin-top: 5rem;
+        }
+    }
+
+    &__date{
+        margin: 6rem 0 3rem 0;
+    }
+}
+
+.register{
+    background-color: v.$light-gray;
+    padding: 3rem;
+    border-radius: 1rem;
+    @include m.tablet {
+        flex: 0 0 40%;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 3rem;
+        
+    }
+
+    &__heading{
+        margin: 0 0 3rem 0;
+    }
+    &__event{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        &:nth-child(even){
+            background-color: darken(v.$light-gray, 5%);
+        }   
+    }
+    &__name{
+        font-size: 2rem;
+        font-weight: v.$bold;
+        margin: 0;
+    }
+    &__delete{
+        all: unset;
+        color: v.$red;
+    }
+
+    &__gift{
+        margin-top: 3rem;
+    }   
+    &__label{
+        display: block;
+        font-size: 2.2rem;
+        font-weight: v.$bold;
+        margin-bottom: 1rem;
+    }
+    &__select{
+        width: 100%;
+        background-color: v.$white;
+        border: 1px solid v.$gray;
+        padding: 1rem;
+        border-radius: .5rem;
+    }
+    &__text{
+        text-align: center;
+    }
+}

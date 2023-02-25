@@ -1,0 +1,195 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin phone {
+    @media (min-width: v.$phone) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin xl_desktop {
+    @media (min-width: v.$xl_desktop) {
+        @content;
+    }
+}
+
+@mixin button($bgColor, $textColor) {
+    background-color: $bgColor;
+    padding: 1.5rem 4rem;
+    color: $textColor;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+
+    &:hover {
+        background-color: darken( $bgColor, 10% );
+        cursor: pointer;
+    }
+}
+
+@mixin grid($columns, $spacing ) {
+    display: grid;
+    gap: $spacing;
+    grid-template-columns: repeat($columns, 1fr);
+}
+
+@mixin container(){
+    width: min(95% , 140rem);
+    margin: 0 auto;
+}
+
+@mixin container-md(){
+    width: min(90% , 80rem);
+    margin: 0 auto;
+}
+
+@mixin container-sm(){
+    width: min(90% , 60rem);
+    margin: 0 auto;
+}
+
+@mixin headings {
+    font-family: v.$main_source;
+    font-size: v.$bolder;
+    margin: 2rem 0;
+}
+
+@mixin page-name{
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
+}
+
+@mixin page-description{
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: v.$normal;
+    color: v.$dark_gray;
+    margin-bottom: 5rem;
+}
+
+@mixin flowing-text($min, $max){
+    font-size: clamp($min, -0.8rem + 10vw, $max);
+}
+
+@mixin gradient-text($start, $end){
+    background: linear-gradient(to right, $start, $end);
+    background-clip: text;
+    color: transparent;
+}
+
+@mixin logo {
+    color: v.$white;
+    text-align: center;
+    margin-bottom: 2rem;
+    @include desktop {
+        text-align: left;
+        margin: 0;
+    }
+}
+
+@mixin social-menu($color, $size){
+    &__link{
+        &::before{
+            color: $color;
+            font-size: $size;
+            display: inline-block;
+            font-style: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiassed;
+            font-family: "Font Awesome 6 Brands";
+        }
+        &[href*="facebook.com"]::before {
+            content: "\f39e";
+        }
+        &[href*="github.com"]::before {
+            content: "\f09b";
+        }
+        &[href*="tiktok.com"]::before {
+            content: "\e07b";
+        }
+        &[href*="instagram.com"]::before {
+            content: "\f16d";
+        }
+        &[href*="youtube.com"]::before {
+            content: "\f167";
+        }
+        &[href*="twitter.com"]::before {
+            content: "\f099";
+        }
+    }
+    &__hide{
+        display: none;
+    }   
+}
+
+@mixin link{
+    all: unset;
+    color: v.$white;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+
+    &:hover{
+        color: v.$blue;
+        cursor: pointer;
+    }
+}
+
+@mixin box_shadow{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+@mixin reset_list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags{
+    @include reset_list;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    
+    >li{
+        background-color: v.$blue;
+        padding: 1rem;
+        border-radius: .5rem;
+        font-size: 1.4rem;
+        color: v.$white;
+        font-weight: v.$bold;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@mixin card{
+    border: 1px solid lighten(v.$gray, 10);
+    padding: 3rem;
+
+    &__name{
+        font-weight: v.$bolder;
+        font-size: 2.6rem;
+        margin: 2rem 0;
+    }
+}
+
+@mixin bg-gradient($bg_color){
+    background-image: linear-gradient(to left top, $bg_color, lighten($bg_color, 15%));
+}
